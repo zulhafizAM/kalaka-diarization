@@ -1,0 +1,8 @@
+fastapi==0.109.2
+uvicorn==0.27.1
+pyannote.audio==3.1.1
+matplotlib==3.8.3
+python-multipart==0.0.7
+torch==2.2.1+cu121  # or `torch==2.2.1` for CPU
+torchvision==0.17.1+cu121  # or `torchvision==0.17.1` for CPU
+torchaudio==2.2.1  # optional, but recommended for audio processing

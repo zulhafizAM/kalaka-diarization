@@ -61,7 +61,7 @@ async def diarize(file: UploadFile = File(...), background_tasks: BackgroundTask
         })
 
     except Exception as e:
-        logger.error(f"Error in diarization: {e}")
+        logger.exception("Error in diarization")
         return JSONResponse({"error": str(e)}, status_code=500)
 
 

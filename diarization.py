@@ -1,15 +1,22 @@
 from pyannote.audio import Pipeline
 from pyannote.core import Segment
+import matplotlib
+
+# Use a non-interactive backend so rendering works on a headless server.
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import torch
 import torchaudio
 import uuid
 import pickle
 import random
 import os
 
-# Load pipeline
+# Load pipeline and pin it to an available device (CPU on GPU-less servers).
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 with open("finetuned_pipeline.pkl", "rb") as f:
     pipeline = pickle.load(f)
+pipeline.to(device)
 
 def process_audio(file_path: str) -> dict:
     waveform, sample_rate = torchaudio.load(file_path)

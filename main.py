@@ -35,8 +35,10 @@ def cleanup_files(*paths):
             os.remove(path)
 
 
+# Plain `def` (not async): process_audio is blocking CPU work, so FastAPI runs it in
+# a worker thread instead of freezing the event loop (and /static) for every request.
 @app.post("/diarize")
-async def diarize(file: UploadFile = File(...), background_tasks: BackgroundTasks = None):
+def diarize(file: UploadFile = File(...), background_tasks: BackgroundTasks = None):
     try:
         # Save uploaded audio to temp file
         audio_filename = f"{uuid.uuid4()}.wav"

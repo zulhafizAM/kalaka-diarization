@@ -1,6 +1,7 @@
 fastapi==0.109.2
 uvicorn==0.27.1
-pyannote.audio==3.1.1
+pyannote.audio==3.3.2  # must match the version finetuned_pipeline.pkl was pickled with
+soundfile>=0.12.1  # torchaudio's audio decoder backend
 matplotlib==3.8.3
 python-multipart==0.0.7
 torch==2.2.1+cu121  # or `torch==2.2.1` for CPU
